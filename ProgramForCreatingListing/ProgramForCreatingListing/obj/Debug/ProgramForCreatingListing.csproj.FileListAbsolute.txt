@@ -1,0 +1,9 @@
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\bin\Debug\ProgramForCreatingListing.exe.config
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\bin\Debug\ProgramForCreatingListing.exe
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\bin\Debug\ProgramForCreatingListing.pdb
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.Form1.resources
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.Properties.Resources.resources
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.csproj.GenerateResource.Cache
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.exe
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.pdb
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.csprojResolveAssemblyReference.cache
