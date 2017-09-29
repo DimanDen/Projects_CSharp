@@ -24,6 +24,13 @@ namespace ProgramForCreatingListing.Components
         {
             return Name;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
+        }
         
     }
 }

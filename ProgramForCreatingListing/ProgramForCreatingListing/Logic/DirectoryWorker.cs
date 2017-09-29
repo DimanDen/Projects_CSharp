@@ -10,30 +10,71 @@ namespace ProgramForCreatingListing
 {
     class DirectoryWorker
     {
-        public delegate void DLoading();
+        public delegate void DLoading(int numbOfDirectories);
         public static event DLoading onSearchFiles;
 
-        public static List<string> AnalysisDirectory()
+        private static int numbOfDirectories = 0;
+
+        static int SearchNumbOfElementsInCatalog(string pathToDirectory)
         {
+            int numbOfElements = 0;
+            try
+            {
+                DirectoryInfo currentDirectory = new DirectoryInfo(pathToDirectory);
+                //numbOfElements = currentDirectory.GetDirectories().Length;
+
+                foreach (var catalog in currentDirectory.GetDirectories())
+                {
+                    numbOfElements++;
+                    numbOfElements += SearchNumbOfElementsInCatalog(catalog.FullName);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return 0;
+            }
+
+            return numbOfElements;
+        }
+
+        public static List<string> AnalysisDirectory(string typeOfFiles)
+        {
+            numbOfDirectories = 0;
             FolderBrowserDialog dialogForChoseDirectory = new FolderBrowserDialog();
             if (dialogForChoseDirectory.ShowDialog() == DialogResult.OK)
             {
                 //Поставить ниже проверку на исключение, если пользоватль отказался от диалога. Возможно уже не надо
                 string pathToDirectory = dialogForChoseDirectory.SelectedPath.ToString();
+                numbOfDirectories = SearchNumbOfElementsInCatalog(pathToDirectory);
+                return SearchingAllFiles(pathToDirectory, typeOfFiles);
+            }
+            return new List<string> { };
+        }
+
+        public static List<string> AnalysisDirectory()
+        {
+            numbOfDirectories = 0;
+            FolderBrowserDialog dialogForChoseDirectory = new FolderBrowserDialog();
+            if (dialogForChoseDirectory.ShowDialog() == DialogResult.OK)
+            {
+                //Поставить ниже проверку на исключение, если пользоватль отказался от диалога. Возможно уже не надо
+                string pathToDirectory = dialogForChoseDirectory.SelectedPath.ToString();
+                numbOfDirectories = SearchNumbOfElementsInCatalog(pathToDirectory);
                 return SearchingAllFiles(pathToDirectory);
             }
-            
+
             return new List<string>();
         }
 
         static List<string> SearchingAllFiles(string pathToDirectory)
         {
             List<string> pathsToFiles = new List<string>();
-            
+
             try
             {
                 DirectoryInfo currentDirectory = new DirectoryInfo(pathToDirectory);
                 
+
                 foreach (var catalog in currentDirectory.GetDirectories())
                 {
                     pathsToFiles.AddRange(SearchingAllFiles(catalog.FullName));
@@ -43,46 +84,39 @@ namespace ProgramForCreatingListing
                 {
                     pathsToFiles.Add(file.FullName);
                 }
-                onSearchFiles();
+
             }
             catch (UnauthorizedAccessException)
             {
                 return new List<string> { };
             }
-            
+            onSearchFiles(numbOfDirectories);
             return pathsToFiles;
-        }
-
-        public static List<string> AnalysisDirectory(string typeOfFiles)
-        {
-            FolderBrowserDialog dialogForChoseDirectory = new FolderBrowserDialog();
-            dialogForChoseDirectory.ShowDialog();
-            //Поставить ниже проверку на исключение, если пользоватль отказался от диалога. Возможно уже не надо
-            string pathToDirectory = dialogForChoseDirectory.SelectedPath.ToString();
-
-            if (pathToDirectory == "")
-            {
-                return new List<string> { };
-            }
-            return SearchingAllFiles(pathToDirectory, typeOfFiles);
         }
 
         static List<string> SearchingAllFiles(string pathToDirectory, string typeOfFiles)
         {
             List<string> pathsToFiles = new List<string>();
-            //onSearchFiles();
-            DirectoryInfo currentDirectory = new DirectoryInfo(pathToDirectory);
-            foreach (var catalog in currentDirectory.GetDirectories())
+            try
             {
-                pathsToFiles.AddRange(SearchingAllFiles(catalog.FullName, typeOfFiles));
-            }
+                DirectoryInfo currentDirectory = new DirectoryInfo(pathToDirectory);
 
-            foreach (var file in currentDirectory.GetFiles())
+                foreach (var catalog in currentDirectory.GetDirectories())
+                {
+                    pathsToFiles.AddRange(SearchingAllFiles(catalog.FullName, typeOfFiles));
+                }
+
+                foreach (var file in currentDirectory.GetFiles())
+                {
+                    if (file.Extension == typeOfFiles)
+                        pathsToFiles.Add(file.FullName);
+                }
+            }
+            catch (UnauthorizedAccessException)
             {
-                if (file.Extension == typeOfFiles)
-                    pathsToFiles.Add(file.FullName);
+                return new List<string> { };
             }
-
+            onSearchFiles(numbOfDirectories);
             return pathsToFiles;
         }
     }

@@ -6,4 +6,5 @@ C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramFor
 C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.csproj.GenerateResource.Cache
 C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.exe
 C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.pdb
-C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.Components.ButtonSearch.resources
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListing\obj\Debug\ProgramForCreatingListing.Components.CheckBoxMsWordType.resources

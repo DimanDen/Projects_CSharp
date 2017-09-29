@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace ProgramForCreatingListing
 {
@@ -64,6 +65,11 @@ namespace ProgramForCreatingListing
                 fileName += path[i];
             }
             return fileName;
+        }
+
+        public static void OpenSelectedFileInNotepad(string pathToFile)
+        {
+            Process.Start("notepad++.exe", pathToFile);
         }
         //public static string FormStringWithDelimiter(string[] pathsOfFiles, string delimiter)
         //{

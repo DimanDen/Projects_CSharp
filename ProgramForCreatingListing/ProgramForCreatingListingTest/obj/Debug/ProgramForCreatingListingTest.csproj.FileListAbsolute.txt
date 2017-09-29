@@ -1,0 +1,7 @@
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\bin\Debug\ProgramForCreatingListingTest.dll
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\bin\Debug\ProgramForCreatingListingTest.pdb
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\bin\Debug\ProgramForCreatingListing.exe
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\bin\Debug\ProgramForCreatingListing.pdb
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\obj\Debug\ProgramForCreatingListingTest.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\obj\Debug\ProgramForCreatingListingTest.dll
+C:\Users\Дмитрий33\Dropbox\ProjectC#\ProgramForCreatingListing\ProgramForCreatingListingTest\obj\Debug\ProgramForCreatingListingTest.pdb

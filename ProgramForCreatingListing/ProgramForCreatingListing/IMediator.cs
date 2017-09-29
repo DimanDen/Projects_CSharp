@@ -18,5 +18,6 @@ namespace ProgramForCreatingListing
         void ChooseTxtFormatListing();
         void ChooseWordFormatListing();
         void CheckStatus();
+        void OpenFile();
     }
 }

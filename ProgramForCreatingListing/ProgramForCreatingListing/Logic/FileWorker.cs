@@ -12,7 +12,7 @@ namespace ProgramForCreatingListing
             string timestr = "";
             try
             {
-                StreamReader ReadTxt = new StreamReader(pathToFile, Encoding.GetEncoding(1251));
+                StreamReader ReadTxt = new StreamReader(pathToFile, Encoding.GetEncoding("utf-8"));
                 timestr = ReadTxt.ReadToEnd().ToString();
                 ReadTxt.Close();
             }

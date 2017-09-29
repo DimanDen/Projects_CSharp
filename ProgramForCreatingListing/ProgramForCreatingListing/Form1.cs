@@ -28,6 +28,8 @@ namespace ProgramForCreatingListing
             dialog.RegisterComponent(checkBoxMsWordTypeListing);
             dialog.RegisterComponent(textBoxDelimiterBtwFiles);
             dialog.RegisterComponent(progressBarLoadingFiles);
+            dialog.RegisterComponent(buttonOpenFile);
+            dialog.RegisterComponent(informationLabel);
         }
 
 
@@ -75,6 +77,16 @@ namespace ProgramForCreatingListing
         {
             listOfFiles.Execute();
             this.Refresh();
+        }
+
+        private void buttonOpenFile_Click(object sender, EventArgs e)
+        {
+            buttonOpenFile.Execute();
+        }
+
+        private void mainTabPage1_Click(object sender, EventArgs e)
+        {
+
         }
 
         //private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)

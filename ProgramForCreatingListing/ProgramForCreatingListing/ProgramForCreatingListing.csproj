@@ -31,12 +31,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>red-vector-book_f_Thumb.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ButtonOpenFile.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\CheckBoxChooseAllElements.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -56,6 +61,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Components\CheckBoxTxtType.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\CheckBoxUTF8WithoutBOM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\InformationLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Components\ProgressBarLoadingFiles.cs">
@@ -94,6 +105,12 @@
     <Compile Include="Components\TextBoxWithHint.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="Components\ButtonSearch.resx">
+      <DependentUpon>ButtonSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\CheckBoxMsWordType.resx">
+      <DependentUpon>CheckBoxMsWordType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +123,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\ProgramForCreatingListing.Components.ButtonDelete.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="red-vector-book_f_Thumb.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

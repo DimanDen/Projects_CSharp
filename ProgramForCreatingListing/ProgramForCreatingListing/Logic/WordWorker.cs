@@ -64,6 +64,7 @@ namespace ProgramForCreatingListing.Logic
             currentRange.Paragraphs.Space1();
             currentRange.Paragraphs.SpaceAfter = 0;
             currentRange.Paragraphs.SpaceBefore = 0;
+            currentRange.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
             //document.Content.Select();
             //currentRange.
             //currentRange.Borders.DistanceFromBottom = 0;

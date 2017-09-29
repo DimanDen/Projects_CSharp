@@ -22,6 +22,10 @@ namespace ProgramForCreatingListing
         CheckBoxMsWordType checkBoxMsWordType;
         CheckBoxTxtType checkBoxTxtType;
         ProgressBarLoadingFiles progressBarLoadingFiles;
+        ButtonOpenFile buttonOpenFile;
+        InformationLabel informationLabel;
+
+        List<int> choosenElementsUnsort = new List<int>();
 
         public void RegisterComponent(IComponentExecute component)
         {
@@ -53,9 +57,15 @@ namespace ProgramForCreatingListing
                 case "progressBarLoadingFiles":
                     progressBarLoadingFiles = (ProgressBarLoadingFiles)component;
                     break;
-
+                case "buttonOpenFile":
+                    buttonOpenFile = (ButtonOpenFile)component;
+                    break;
+                case "informationLabel":
+                    informationLabel = (InformationLabel)component;
+                    break;
             }
         }
+
 
         public void Notify(string note)
         {
@@ -69,6 +79,7 @@ namespace ProgramForCreatingListing
 
             progressBarLoadingFiles.Value = 0;
 
+            //Сколько вызовов сделается, столько откликов на событие и создатся!!!
             DirectoryWorker.onSearchFiles += Loading;
 
             List<string> pathsToFiles = new List<string>();
@@ -82,29 +93,44 @@ namespace ProgramForCreatingListing
             {
                 listOfFiles.Items.Add(path);
             }
-            progressBarLoadingFiles.Value = 100;
+            progressBarLoadingFiles.Value = progressBarLoadingFiles.Maximum;
+            DirectoryWorker.onSearchFiles -= Loading;
+
         }
 
-        public void Loading()
+        public void Loading(int numbOfDirectories)
         {
-            if (progressBarLoadingFiles.Value == 50 ||
-                progressBarLoadingFiles.Value == 75)
-                Thread.Sleep(150);
+            //При выборе папки Дмитрий 33 возникает исключение
+            progressBarLoadingFiles.Maximum = numbOfDirectories + 1;
+            //try
+            //{
+            ++progressBarLoadingFiles.Value;
+            //}
+            //catch (ArgumentOutOfRangeException)
+            //{
+            //    progressBarLoadingFiles.Maximum = progressBarLoadingFiles.Value + 1;
+            //    ++progressBarLoadingFiles.Value;
+            //}
 
-            if (progressBarLoadingFiles.Value == 100)
-            {
-                progressBarLoadingFiles.Value = 0;
-            }
-            progressBarLoadingFiles.Value++;
+
         }
 
         public void FormListing()
         {
-            string[] items = new string[listOfFiles.CheckedIndices.Count];
-            for (int i = 0; i < items.Length; ++i)
+            //string[] items = new string[listOfFiles.CheckedIndices.Count];
+            string[] items = new string[choosenElementsUnsort.Count];
+            //for (int i = 0; i < items.Length; ++i)
+            //{
+            //    //items[i] = listOfFiles.CheckedItems[i].ToString();
+            //}
+
+            int counter = 0;
+            foreach (int unsort_i in choosenElementsUnsort)
             {
-                items[i] = listOfFiles.CheckedItems[i].ToString();
+                items[counter] = listOfFiles.Items[unsort_i].ToString();
+                counter++;
             }
+
 
             if (checkBoxMsWordType.Checked)
             {
@@ -134,9 +160,6 @@ namespace ProgramForCreatingListing
                     MessageBox.Show("Листинг не сформирован", "Неуспешно", MessageBoxButtons.OKCancel);
                 }
             }
-
-
-
         }
 
         public void DeleteElementsFromList()
@@ -149,6 +172,8 @@ namespace ProgramForCreatingListing
                 {
                     if (listOfFiles.CheckedIndices.Contains(i))
                     {
+                        if (choosenElementsUnsort.Contains(i))
+                            choosenElementsUnsort.Remove(i);
                         listOfFiles.Items.Remove(listOfFiles.Items[i]);
                         break;
                     }
@@ -178,6 +203,8 @@ namespace ProgramForCreatingListing
             }
         }
 
+
+
         private void setCheckedForAllElements(bool flag)
         {
             for (int i = 0; i < listOfFiles.Items.Count; ++i)
@@ -188,6 +215,17 @@ namespace ProgramForCreatingListing
 
         public void CheckStatus()
         {
+            if (listOfFiles.SelectedIndex != -1)
+            {
+                if (listOfFiles.GetItemCheckState(listOfFiles.SelectedIndex) == CheckState.Checked)
+                {
+                    choosenElementsUnsort.Add(listOfFiles.SelectedIndex);
+                }
+                else
+                    if (choosenElementsUnsort.Contains(listOfFiles.SelectedIndex))
+                        choosenElementsUnsort.Remove(listOfFiles.SelectedIndex);
+            }
+
             if ((listOfFiles.CheckedIndices.Count != 0)
                 && (listOfFiles.CheckedIndices.Count != listOfFiles.Items.Count))
             {
@@ -201,6 +239,12 @@ namespace ProgramForCreatingListing
             {
                 checkBoxChooseAllElements.CheckState = CheckState.Checked;
             }
+        }
+
+        public void OpenFile()
+        {
+            if (listOfFiles.SelectedIndex != -1)
+                ActionLogic.OpenSelectedFileInNotepad((string)listOfFiles.Items[listOfFiles.SelectedIndex]);
         }
 
         public void ChooseTxtFormatListing()
